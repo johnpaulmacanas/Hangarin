@@ -1,21 +1,34 @@
 # Hangarin
 
 ## Short Description
-Hangarin is a Django-based web application designed to manage organizations and related resources.  
-It provides tools for creating, storing, and managing organizational data with ease, while keeping the system modular and scalable.
+*Hangarin is a Django-based web application designed to manage organizations and related resources.  
+It provides tools for creating, storing, and managing organizational data with ease, while keeping the system modular and scalable.*
 
 ---
+# Features
 
-## Features
-- 🏢 **Organization Management** – Add and manage organizations through Django models and admin.
-- 👤 **User Authentication** – Superuser and admin login via Django’s authentication system.
-- 🗄️ **Database-Driven** – Uses SQLite by default, but can be configured for PostgreSQL/MySQL.
-- ⚙️ **Custom Commands** – Supports management commands (e.g., seeding initial data).
-- 🎨 **Extensible Templates** – Ready to connect with Django templates for UI.
-- 🛡️ **Django Admin Panel** – Manage data manually at `/admin`.
+- **Organization Management** –Create and manage organizational records (like departments, groups, or orgs)
+- **Event Tracking** – Add and track activities, events, or projects within the organization.
+
+- **Admin Dashboard** – Supports management commands (e.g., seeding initial data).
+
+- **Responsive UI** – Accessible on both desktop and mobile devices.
 
 ---
+# Author
 
-## Authors
-- **John Paul Macanas** – *Author* 
-<img src="jp1.jpg" alt="My Profile Picture" width="200" style="border-radius:50%;">
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/johnpaulmacanas/Hangarin/f80ffdfec6e5951982a5781c820909c0a73e7dcb/image/jp2.png" 
+       alt="My Profile Picture" 
+       width="150" 
+       style="border-radius:20%;">
+</p>
+
+ **John Paul Macanas** -
+*3rd Year BS Computer Science*
+
+
+
+
+
