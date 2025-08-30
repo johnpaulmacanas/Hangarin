@@ -7,68 +7,76 @@ class BaseModel(models.Model):
     class Meta:
         abstract = True
 
-        class Priority(BaseModel):
-          prio_name = models.CharField(max_length=150)
-          status = models.CharField(max_length=150)
-          choices=[("Pending", "Pending"), ("In Progress", "In Progress"),("Complete", "Complete"),],
-          default = "pending"
+class Priority(BaseModel):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=50)
 
-            def __str__(self):
+    class Meta:
+        verbose_name = "Priority"
+        verbose_name_plural = "Priorities"
 
-                return self.prio_name
-            
-        class Category(BaseModel):
-            cat_name = models.CharField(max_length=150)
-            status = models.CharField(max_length=150)
-            choices=[("Pending", "Pending"), ("In Progress", "In Progress"),("Complete", "Complete"),],
-            default = "pending"
+    def __str__(self):
+        return self.name
 
 
-            def __str__(self):
+class Category(BaseModel):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=50)
 
-                return self.cat_name
+    class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
 
-        class Task(BaseModel):
-            title = models.CharField(max_length=150)
-            description = models.CharField(max_length=150)
-            deadline = models.CharField(max_length=150)
-            status = models.CharField(max_length=150)
-            category = models.ForeignKey(College, null=True, blank=True, on_delete=models.CASCADE)
-            priority = models.ForeignKey(College, null=True, blank=True, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.name
 
-            choices=[("Pending", "Pending"), ("In Progress", "In Progress"),("Complete", "Complete"),],
-            default = "pending"
+class Task(BaseModel):
+    id = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=50)
+    description = models.CharField(max_length=50)
+    deadline = models.DateTimeField()
+    status = models.CharField(
+        max_length=50,
+        choices=[
+            ('Pending', 'Pending'),
+            ('In progress', 'In Progress'),
+            ('Completed', 'Completed'),
+        ],
+        default='Pending',
+    )
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    priority = models.ForeignKey(Priority, on_delete=models.CASCADE)
 
-
-            def __str__(self):
-
-                return self.title
-
-         class Note(BaseModel):
-            task = models.CharField(max_length=150)
-            consent = models.CharField(max_length=150)
-            status = models.CharField(max_length=150)
-            choices=[("Pending", "Pending"), ("In Progress", "In Progress"),("Complete", "Complete"),],
-            default = "pending"
-
-
-            def __str__(self):
-
-
-                return self.name
-
-            class SubTask(BaseModel):
-            parent_task = models.CharField(max_length=150)
-            title = models.CharField(max_length=150)
-            status = models.CharField(max_length=150)
-            choices=[("Pending", "Pending"), ("In Progress", "In Progress"),("Complete", "Complete"),],
-            default = "pending"
+    def __str__(self):
+        return self.title
 
 
-            def __str__(self):
+class Note(BaseModel):
+    id = models.AutoField(primary_key=True)
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    content = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.content
+    
 
-                return self.name
+class SubTask(BaseModel):
+    id = models.AutoField(primary_key=True)
+    parent_task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    title = models.CharField(max_length=50)
+    status = models.CharField(
+        max_length=50,
+        choices=[
+            ('Pending', 'Pending'),
+            ('In progress', 'In Progress'),
+            ('Completed', 'Completed'),
+        ],
+        default='Pending',
+    )
+
+    def __str__(self):
+        return self.title
+
 
 
 
